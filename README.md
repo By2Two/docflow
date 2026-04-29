@@ -9,9 +9,6 @@ DocFlow lets you build process documents by adding and arranging content blocks 
 ## Tech stack
 
 - **Angular 20** - standalone components, signals
-- **jsPDF** - client-side PDF generation
-- **Supabase** - authentication
-- **GitHub Pages** - hosting
 
 ## Architecture
 
