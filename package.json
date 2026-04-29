@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "setup": "node scripts/generate-env.js",
-    "start": "npm run setup && ng serve",
-    "build": "npm run setup && ng build",
-    "watch": "npm run setup && ng build --watch --configuration development"
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development"
   },
   "private": true,
   "dependencies": {
@@ -19,7 +18,6 @@
     "@angular/platform-browser-dynamic": "^20.0.0",
     "@angular/router": "^20.0.0",
     "@mdi/font": "^7.4.47",
-    "@supabase/supabase-js": "^2.105.1",
     "jspdf": "^4.2.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

@@ -1,26 +1,22 @@
-@if (!isAuthenticated()) {
-  <app-login></app-login>
-} @else {
-  <div class="app-shell">
-    <app-header (previewToggle)="togglePreview()" (exportClick)="openExport()">
-    </app-header>
+<div class="app-shell">
+  <app-header (previewToggle)="togglePreview()" (exportClick)="openExport()">
+  </app-header>
 
-    <div class="app-body">
-      <app-sidebar></app-sidebar>
-      <app-timeline></app-timeline>
-      @if (showPreview()) {
-        <app-pdf-preview></app-pdf-preview>
-      }
-    </div>
-
-    @if (showExportModal()) {
-      <app-export-modal (close)="closeExport()"></app-export-modal>
-    }
-
-    @if (toast) {
-      <div class="toast" [class]="'toast show toast-' + toast.type">
-        {{ toast.message }}
-      </div>
+  <div class="app-body">
+    <app-sidebar></app-sidebar>
+    <app-timeline></app-timeline>
+    @if (showPreview()) {
+      <app-pdf-preview></app-pdf-preview>
     }
   </div>
-}
+
+  @if (showExportModal()) {
+    <app-export-modal (close)="closeExport()"></app-export-modal>
+  }
+
+  @if (toast) {
+    <div class="toast" [class]="'toast show toast-' + toast.type">
+      {{ toast.message }}
+    </div>
+  }
+</div>
