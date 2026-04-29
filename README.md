@@ -24,9 +24,4 @@ src/
     i18n/           # PT/EN translations
   environments/     # generated at build time from .env, not committed
 ```
-
-Authentication is handled by Supabase. Environment variables are injected at build time via `scripts/generate-env.js`, which reads from a local `.env` file or from CI secrets.
  
-## Deploy
-
-Pushes to `main` trigger a GitHub Actions workflow that builds and deploys to GitHub Pages automatically. Supabase credentials are stored as repository secrets (`SUPABASE_URL`, `SUPABASE_KEY`).
