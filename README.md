@@ -26,16 +26,7 @@ src/
 ```
 
 Authentication is handled by Supabase. Environment variables are injected at build time via `scripts/generate-env.js`, which reads from a local `.env` file or from CI secrets.
-
-## Local setup
-
-```bash
-cp .env.example .env
-# fill in SUPABASE_URL and SUPABASE_KEY in .env
-npm install
-npm start
-```
-
+ 
 ## Deploy
 
 Pushes to `main` trigger a GitHub Actions workflow that builds and deploys to GitHub Pages automatically. Supabase credentials are stored as repository secrets (`SUPABASE_URL`, `SUPABASE_KEY`).
