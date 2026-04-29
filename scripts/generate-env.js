@@ -15,6 +15,11 @@ if (fs.existsSync(envFile)) {
     });
 }
 
+const envDir = path.resolve(__dirname, '../src/environments');
+if (!fs.existsSync(envDir)) {
+  fs.mkdirSync(envDir, { recursive: true });
+}
+
 const content = (production) => `export const environment = {
   production: ${production},
   supabaseUrl: '${env.SUPABASE_URL ?? ''}',
