@@ -1,0 +1,124 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.canvas-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.doc-container {
+  width: 100%;
+  max-width: 720px;
+}
+
+.canvas-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text3);
+  text-align: center;
+  min-height: 360px;
+  padding: 40px;
+}
+
+.canvas-empty .big-icon {
+  font-size: 64px;
+  opacity: 0.25;
+  color: var(--text2);
+  display: block;
+}
+
+.canvas-empty p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text2);
+  max-width: 240px;
+}
+
+.empty-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+.btn-quick {
+  padding: 7px 14px;
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--text2);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-quick:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light);
+}
+
+.timeline {
+  position: relative;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 40px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent) 0%, transparent 100%);
+  border-radius: 2px;
+}
+
+.add-step-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  padding-left: 50px;
+}
+.add-step-row hr {
+  flex: 1;
+  border: none;
+  border-top: 1px dashed var(--border2);
+}
+
+.btn-add-bottom {
+  padding: 6px 16px;
+  border: 1px dashed var(--border2);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--text2);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.btn-add-bottom:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light);
+}
+
+:host ::ng-deep .block-wrapper.dragging {
+  opacity: 0.4;
+}
+:host ::ng-deep .block-wrapper.drag-over .block-card {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}

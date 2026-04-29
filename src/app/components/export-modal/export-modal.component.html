@@ -1,0 +1,87 @@
+<div class="modal-backdrop" (click)="close.emit()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <span class="modal-title">{{ translations.exportModal.title }}</span>
+      <button class="btn-close" (click)="close.emit()">
+        <i class="mdi mdi-close"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="row-two">
+        <div class="config-row">
+          <label>{{ translations.exportModal.paperFormat }}</label>
+          <select [(ngModel)]="options.format">
+            <option value="a4">{{ translations.exportModal.a4 }}</option>
+            <option value="letter">
+              {{ translations.exportModal.letter }}
+            </option>
+          </select>
+        </div>
+        <div class="config-row">
+          <label>{{ translations.exportModal.orientation }}</label>
+          <select [(ngModel)]="options.orientation">
+            <option value="portrait">
+              {{ translations.exportModal.portrait }}
+            </option>
+            <option value="landscape">
+              {{ translations.exportModal.landscape }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row-two">
+        <div class="config-row">
+          <label>{{ translations.exportModal.includeDate }}</label>
+          <select [(ngModel)]="options.includeDate">
+            <option [ngValue]="true">{{ translations.exportModal.yes }}</option>
+            <option [ngValue]="false">{{ translations.exportModal.no }}</option>
+          </select>
+        </div>
+        <div class="config-row">
+          <label>{{ translations.exportModal.watermark }}</label>
+          <input
+            type="text"
+            [placeholder]="translations.exportModal.watermarkPlaceholder"
+            [(ngModel)]="options.watermark"
+          />
+        </div>
+      </div>
+
+      <div class="summary">
+        <div class="summary-item">
+          <span class="s-label">{{ translations.exportModal.blocks }}</span>
+          <span class="s-value">{{ document.blockCount() }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="s-label">{{ translations.exportModal.steps }}</span>
+          <span class="s-value">{{ document.stepCount() }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="s-label">{{ translations.exportModal.style }}</span>
+          <span class="s-value">{{
+            translations.styles[document.config().style]
+          }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn" (click)="close.emit()">
+        {{ translations.exportModal.cancel }}
+      </button>
+      <button
+        class="btn btn-primary"
+        (click)="generate()"
+        [disabled]="isGenerating"
+      >
+        {{
+          isGenerating
+            ? translations.exportModal.generating
+            : translations.exportModal.generate
+        }}
+      </button>
+    </div>
+  </div>
+</div>

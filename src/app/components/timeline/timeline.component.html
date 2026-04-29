@@ -1,0 +1,50 @@
+<main class="canvas-area">
+  <div class="doc-container">
+    @if (blocks.length === 0) {
+      <div class="canvas-empty">
+        <i class="mdi mdi-clipboard-text-outline big-icon"></i>
+        <p>{{ translations.timeline.emptyMessage }}</p>
+        <div class="empty-actions">
+          <button class="btn-quick" (click)="addFirstBlock('text')">
+            <i class="mdi mdi-text"></i> {{ translations.timeline.quickText }}
+          </button>
+          <button class="btn-quick" (click)="addFirstBlock('image')">
+            <i class="mdi mdi-image-outline"></i>
+            {{ translations.timeline.quickImage }}
+          </button>
+          <button class="btn-quick" (click)="addFirstBlock('tip')">
+            <i class="mdi mdi-lightbulb-outline"></i>
+            {{ translations.timeline.quickTip }}
+          </button>
+        </div>
+      </div>
+    }
+
+    @if (blocks.length > 0) {
+      <div class="timeline">
+        @for (block of blocks; track block.id; let idx = $index) {
+          <app-block
+            [block]="block"
+            [stepNumber]="getStepNumber(block.id)"
+            [isFirst]="isFirst(idx)"
+            [isLast]="isLast(idx)"
+            (addAfter)="addAfterBlock(block.id)"
+            (dragStart)="onDragStart($event, block.id)"
+            (dragOver)="onDragOver($event, block.id)"
+            (drop)="onDrop($event, block.id)"
+            (dragEnd)="onDragEnd()"
+          >
+          </app-block>
+        }
+
+        <div class="add-step-row">
+          <hr />
+          <button class="btn-add-bottom" (click)="addFirstBlock('text')">
+            <i class="mdi mdi-plus"></i> {{ translations.timeline.addBlock }}
+          </button>
+          <hr />
+        </div>
+      </div>
+    }
+  </div>
+</main>

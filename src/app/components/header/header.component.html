@@ -1,0 +1,36 @@
+<header class="header">
+  <div class="logo">
+    <div class="logo-dot"></div>
+    DocFlow
+  </div>
+
+  <div class="header-center">
+    <span class="doc-title-preview">{{
+      document.config().title || translations.header.untitled
+    }}</span>
+  </div>
+
+  <div class="header-actions">
+    <span class="count-badge"
+      >{{ document.blockCount() }}
+      {{
+        document.blockCount() === 1
+          ? translations.header.block
+          : translations.header.blocks
+      }}</span
+    >
+    <button class="btn btn-lang" (click)="locale.toggle()">
+      {{ locale.locale() === "pt" ? "EN" : "PT" }}
+    </button>
+    <button class="btn" (click)="onPreview()">
+      <i class="mdi mdi-eye-outline"></i> {{ translations.header.preview }}
+    </button>
+    <button
+      class="btn btn-primary"
+      (click)="onExport()"
+      [disabled]="document.blockCount() === 0"
+    >
+      <i class="mdi mdi-download"></i> {{ translations.header.export }}
+    </button>
+  </div>
+</header>

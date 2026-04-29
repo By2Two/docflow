@@ -1,0 +1,48 @@
+@import '@mdi/font/css/materialdesignicons.min.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #F7F6F3;
+  --surface: #FFFFFF;
+  --surface2: #F2F0EC;
+  --border: rgba(0, 0, 0, 0.1);
+  --border2: rgba(0, 0, 0, 0.18);
+  --text: #1A1A18;
+  --text2: #6B6A65;
+  --text3: #9A9892;
+  --accent: #2A5F4F;
+  --accent-light: #E8F3EF;
+  --accent2: #C8A96E;
+  --danger: #C23B3B;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-serif: 'DM Serif Display', serif;
+  --r: 10px;
+  --r-lg: 14px;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+}
+
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+input, select, textarea {
+  font-family: var(--font-sans);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text3); }

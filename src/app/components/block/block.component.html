@@ -1,0 +1,183 @@
+<div
+  class="block-wrapper"
+  draggable="true"
+  (dragstart)="onDragStart($event)"
+  (dragover)="$event.preventDefault(); onDragOver($event)"
+  (drop)="onDrop($event)"
+  (dragend)="onDragEnd()"
+>
+  <div class="block-step">
+    @if (block().type !== "separator") {
+      <div class="step-number" [class.step-off]="block().showStep === false">
+        @if (block().showStep !== false) {
+          {{ stepNumber() }}
+        } @else {
+          <i class="mdi mdi-minus"></i>
+        }
+      </div>
+    } @else {
+      <div class="step-number step-sep">
+        <i class="mdi mdi-dots-horizontal"></i>
+      </div>
+    }
+  </div>
+
+  <div class="block-card">
+    <div class="block-header">
+      <span
+        class="block-type-badge"
+        [class]="'block-type-badge ' + badgeClass"
+        >{{ badgeLabel }}</span
+      >
+
+      @if (block().type !== "separator") {
+        <input
+          class="block-title-input"
+          type="text"
+          [placeholder]="translations.block.stepTitle"
+          [value]="block().title"
+          (input)="updateTitle($any($event.target).value)"
+        />
+      }
+
+      <div class="block-actions">
+        @if (block().type !== "separator") {
+          <button
+            class="block-action-btn"
+            [class.step-toggle-on]="block().showStep !== false"
+            [title]="
+              block().showStep !== false
+                ? translations.block.stepOn
+                : translations.block.stepOff
+            "
+            (click)="toggleStep()"
+          >
+            <i class="mdi mdi-format-list-numbered"></i>
+          </button>
+        }
+        <button
+          class="block-action-btn"
+          [title]="translations.block.moveUp"
+          (click)="moveUp()"
+          [disabled]="isFirst()"
+        >
+          <i class="mdi mdi-arrow-up"></i>
+        </button>
+        <button
+          class="block-action-btn"
+          [title]="translations.block.moveDown"
+          (click)="moveDown()"
+          [disabled]="isLast()"
+        >
+          <i class="mdi mdi-arrow-down"></i>
+        </button>
+        <button
+          class="block-action-btn"
+          [title]="translations.block.addAfter"
+          (click)="addAfter.emit()"
+        >
+          <i class="mdi mdi-plus"></i>
+        </button>
+        <button
+          class="block-action-btn del"
+          [title]="translations.block.remove"
+          (click)="remove()"
+        >
+          <i class="mdi mdi-close"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="block-body">
+      @if (block().type === "text") {
+        <textarea
+          class="block-text"
+          [placeholder]="translations.block.textPlaceholder"
+          [value]="block().content"
+          (input)="
+            updateContent($any($event.target).value);
+            autoResize($any($event.target))
+          "
+        ></textarea>
+      }
+
+      @if (block().type === "image") {
+        <div class="block-img-area" (click)="imgInput.click()">
+          @if (block().imageData) {
+            <img [src]="block().imageData" [alt]="block().caption" />
+          } @else {
+            <div class="block-img-placeholder">
+              <i class="mdi mdi-image-outline big"></i>
+              {{ translations.block.clickToLoadImage }}<br />
+              <span class="hint">{{ translations.block.imageHint }}</span>
+            </div>
+          }
+        </div>
+        <input
+          #imgInput
+          type="file"
+          accept="image/*"
+          style="display: none"
+          (change)="onImageFile($event)"
+        />
+        <input
+          class="block-caption"
+          type="text"
+          [placeholder]="translations.block.captionPlaceholder"
+          [value]="block().caption"
+          (input)="updateCaption($any($event.target).value)"
+        />
+      }
+
+      @if (block().type === "video") {
+        <input
+          class="url-input"
+          type="text"
+          [placeholder]="translations.block.videoUrlPlaceholder"
+          [value]="block().videoUrl"
+          (input)="updateVideoUrl($any($event.target).value)"
+        />
+      }
+
+      @if (block().type === "tip") {
+        <div class="callout-box tip">
+          <textarea
+            [placeholder]="translations.block.tipPlaceholder"
+            [value]="block().content"
+            (input)="
+              updateContent($any($event.target).value);
+              autoResize($any($event.target))
+            "
+          ></textarea>
+        </div>
+      }
+
+      @if (block().type === "warning") {
+        <div class="callout-box warn">
+          <textarea
+            [placeholder]="translations.block.warningPlaceholder"
+            [value]="block().content"
+            (input)="
+              updateContent($any($event.target).value);
+              autoResize($any($event.target))
+            "
+          ></textarea>
+        </div>
+      }
+
+      @if (block().type === "separator") {
+        <div class="separator-block">
+          <hr />
+          <input
+            class="separator-label-input"
+            type="text"
+            [placeholder]="translations.block.sectionDefault"
+            [value]="block().title"
+            (input)="updateTitle($any($event.target).value)"
+          />
+          <hr />
+        </div>
+      }
+    </div>
+  </div>
+</div>

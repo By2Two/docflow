@@ -1,0 +1,108 @@
+<aside class="preview-panel">
+  <div class="preview-header">{{ translations.preview.header }}</div>
+
+  <div class="preview-scroll">
+    <div class="pdf-preview">
+      <div class="pdf-header" [style.background]="style.color">
+        @if (config.logoData) {
+          <img class="pdf-logo" [src]="config.logoData" alt="Logo" />
+        }
+        <div class="pdf-header-text">
+          <div class="pdf-doc-type">
+            {{ translations.styles[config.style]
+            }}{{ config.company ? " · " + config.company : "" }}
+          </div>
+          <div class="pdf-title">
+            {{ config.title || translations.preview.untitled }}
+          </div>
+          @if (config.subtitle) {
+            <div class="pdf-subtitle">{{ config.subtitle }}</div>
+          }
+        </div>
+      </div>
+
+      <div class="pdf-meta">
+        @if (config.author) {
+          <span
+            ><strong>{{ translations.preview.author }}</strong
+            >{{ config.author }}</span
+          >
+        }
+        <span
+          ><strong>{{ translations.preview.date }}</strong
+          >{{ date }}</span
+        >
+        <span
+          ><strong>{{ translations.preview.steps }}</strong
+          >{{ document.stepCount() }}</span
+        >
+      </div>
+
+      <div class="pdf-content">
+        @if (blocks.length === 0) {
+          <p class="empty-hint">{{ translations.preview.emptyHint }}</p>
+        }
+
+        @for (block of blocks; track block.id) {
+          @if (block.type === "separator") {
+            <div class="pdf-sep-wrap">
+              <hr class="pdf-sep" />
+              <span class="pdf-sep-label">{{
+                block.title || translations.preview.sectionDefault
+              }}</span>
+            </div>
+          } @else {
+            <div class="pdf-block">
+              @if (block.showStep !== false) {
+                <div class="pdf-step-label">
+                  {{ translations.preview.step }} {{ getStepNumber(block.id) }}
+                </div>
+              }
+              <div class="pdf-step-title">
+                {{ block.title || translations.preview.untitledStep }}
+              </div>
+
+              @if (block.type === "text" && block.content) {
+                <p class="pdf-step-text">{{ block.content }}</p>
+              }
+
+              @if (block.type === "tip" && block.content) {
+                <div class="pdf-callout tip">💡 {{ block.content }}</div>
+              }
+
+              @if (block.type === "warning" && block.content) {
+                <div class="pdf-callout warn">⚠️ {{ block.content }}</div>
+              }
+
+              @if (block.type === "image" && block.imageData) {
+                <img
+                  class="pdf-step-img"
+                  [src]="block.imageData"
+                  [alt]="block.caption"
+                />
+                @if (block.caption) {
+                  <p class="pdf-caption">{{ block.caption }}</p>
+                }
+              }
+
+              @if (block.type === "video") {
+                <div class="pdf-video-note">
+                  <i class="mdi mdi-video-outline"></i>
+                  {{
+                    block.videoUrl ||
+                      block.title ||
+                      translations.preview.videoNoUrl
+                  }}
+                </div>
+              }
+            </div>
+          }
+        }
+      </div>
+
+      <div class="pdf-footer">
+        <span>{{ translations.preview.page }}</span>
+      </div>
+    </div>
+  </div>
+</aside>

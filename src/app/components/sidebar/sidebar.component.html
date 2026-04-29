@@ -1,0 +1,99 @@
+<aside class="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-label">{{ translations.sidebar.document }}</div>
+
+    <div class="config-row">
+      <label>{{ translations.sidebar.logo }}</label>
+      <div class="logo-upload" (click)="logoInput.click()">
+        @if (config.logoData) {
+          <img [src]="config.logoData" alt="Logo" class="logo-preview-img" />
+          <button
+            class="remove-logo"
+            (click)="$event.stopPropagation(); removeLogo()"
+          >
+            <i class="mdi mdi-close"></i>
+          </button>
+        } @else {
+          <div class="logo-upload-text">
+            <i class="mdi mdi-upload"></i><br />
+            <span class="link">{{ translations.sidebar.clickToUpload }}</span>
+            {{ translations.sidebar.image }}<br />
+            <small>{{ translations.sidebar.fileTypes }}</small>
+          </div>
+        }
+      </div>
+      <input
+        #logoInput
+        type="file"
+        accept="image/*"
+        style="display: none"
+        (change)="onLogoChange($event)"
+      />
+      <label class="sub-label">{{ translations.sidebar.name }}</label>
+      <input
+        type="text"
+        [placeholder]="translations.sidebar.namePlaceholder"
+        [value]="config.company"
+        (input)="updateCompany($any($event.target).value)"
+      />
+    </div>
+
+    <div class="config-row">
+      <label>{{ translations.sidebar.documentTitle }}</label>
+      <input
+        type="text"
+        [placeholder]="translations.sidebar.documentTitlePlaceholder"
+        [value]="config.title"
+        (input)="updateTitle($any($event.target).value)"
+      />
+    </div>
+
+    <div class="config-row">
+      <label>{{ translations.sidebar.subtitleVersion }}</label>
+      <input
+        type="text"
+        [placeholder]="translations.sidebar.subtitlePlaceholder"
+        [value]="config.subtitle"
+        (input)="updateSubtitle($any($event.target).value)"
+      />
+    </div>
+
+    <div class="config-row">
+      <label>{{ translations.sidebar.author }}</label>
+      <input
+        type="text"
+        [placeholder]="translations.sidebar.authorPlaceholder"
+        [value]="config.author"
+        (input)="updateAuthor($any($event.target).value)"
+      />
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-label">{{ translations.sidebar.documentStyle }}</div>
+    <div class="style-pills">
+      @for (entry of styles; track entry[0]) {
+        <button
+          class="style-pill"
+          [class.active]="config.style === entry[0]"
+          (click)="setStyle(entry[0])"
+        >
+          <i class="mdi {{ entry[1].icon }}"></i>
+          {{ translations.styles[entry[0]] }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="sidebar-section grow">
+    <div class="sidebar-label">{{ translations.sidebar.addBlock }}</div>
+    <div class="add-block-grid">
+      @for (bt of blockTypes; track bt.type) {
+        <button class="add-block-btn" (click)="addBlock(bt.type)">
+          <i class="mdi {{ bt.icon }}"></i>
+          <span class="lbl">{{ bt.label }}</span>
+        </button>
+      }
+    </div>
+  </div>
+</aside>

@@ -1,0 +1,111 @@
+.login-bg {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f5f7;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 40px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.login-logo {
+  margin-bottom: 24px;
+}
+
+.login-brand {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.login-app {
+  font-size: 1rem;
+  color: #888;
+  margin-left: 4px;
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 24px;
+  color: #111;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.field input {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.field input:focus {
+  border-color: #111;
+}
+
+.error-msg {
+  font-size: 0.85rem;
+  color: #c0392b;
+  margin: -8px 0 12px;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 11px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-top: 4px;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #333;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.toggle-mode {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.toggle-mode button {
+  background: none;
+  border: none;
+  color: #111;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.875rem;
+}
